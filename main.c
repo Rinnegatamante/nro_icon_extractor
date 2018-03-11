@@ -4,21 +4,6 @@
 #include <stdlib.h>
 #include <stdint.h>
 
-static unsigned long long int fnv1a(const void *data, size_t size) {
-
-    const unsigned char *const begin = data;
-    const unsigned char *const end = begin + size;
-    unsigned long long int result = 0xcbf29ce484222325;
-    
-    const unsigned char *p;
-    for (p = begin; p != end; ++p) {
-        result ^= *p;
-        result *= 0x100000001b3;
-    }
-
-    return result;
-}
-
 int main(int argc,char** argv){
 	
 	if (argc != 2){
