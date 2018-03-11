@@ -1,0 +1,1 @@
+gcc -o nro_icon_extractor.exe main.c
