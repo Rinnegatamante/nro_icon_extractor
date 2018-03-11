@@ -20,10 +20,10 @@ int main(int argc,char** argv){
 	unsigned long read_start = 0;
 	fseek(input, 0, SEEK_END);
 	unsigned long size = (unsigned long)ftell(input);
-    char* data = (char*)malloc(size);
-    fseek(input, 0, SEEK_SET);
-    fread(data, 1, size, input);
-    fclose(input);
+	char* data = (char*)malloc(size);
+	fseek(input, 0, SEEK_SET);
+	fread(data, 1, size, input);
+	fclose(input);
 	
 	uint32_t *ptr = (uint32_t*)&data[0x10];
 	if (*ptr != 0x304F524E){
