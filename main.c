@@ -7,14 +7,14 @@
 int main(int argc,char** argv){
 	
 	if (argc != 2){
-		printf("Usage: nro_icon_extractor FILE.nro\n");
+		printf("Usage: %s FILE.nro\n", strrchr(argv[0], '\\'));
 		return 0;
 	}
 	
-	FILE *input = fopen(argv[1],"rb");		
+	FILE *input = fopen(argv[1],"rb");
 	if (input == NULL){
 		printf("ERROR: File not found.\n");
-		return;
+		return 1;
 	}
 	
 	unsigned long read_start = 0;
@@ -28,7 +28,7 @@ int main(int argc,char** argv){
 	uint32_t *ptr = (uint32_t*)&data[0x10];
 	if (*ptr != 0x304F524E){
 		printf("ERROR: Invalid NRO file.\n");
-		return;
+		return 1;
 	}
 	
 	ptr = (uint32_t*)&data[0x18];
@@ -36,7 +36,7 @@ int main(int argc,char** argv){
 	ptr = (uint32_t*)&data[nro_size];
 	if (*ptr != 0x54455341){
 		printf("ERROR: Asset segment not found.\n");
-		return;
+		return 1;
 	}
 	
 	ptr = (uint32_t*)&data[nro_size + 0x08];
